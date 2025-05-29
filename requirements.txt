@@ -1,0 +1,10 @@
+streamlit
+scikit-learn
+numpy
+python-docx
+pymupdf
+python-pptx
+Pillow
+pytesseract
+requests
+beautifulsoup4
