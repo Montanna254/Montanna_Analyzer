@@ -1,22 +1,21 @@
 import streamlit as st
-import hashlib
 
-def check_password():
-    def login():
-        st.session_state["password_correct"] = password_entered == "YourPassword"
+def login():
+    password = st.text_input("Enter password", type="password")
+    if st.button("Login"):
+        if password == "YourPassword":
+            st.session_state["password_correct"] = True
+        else:
+            st.session_state["password_correct"] = False
+            st.error("Incorrect password")
 
-    if "password_correct" not in st.session_state:
-        st.text_input("Password", type="password", on_change=login, key="password")
-        return False
-    elif not st.session_state["password_correct"]:
-        st.text_input("Password", type="password", on_change=login, key="password")
-        st.error("😕 Password incorrect")
-        return False
-    else:
-        return True
+if "password_correct" not in st.session_state:
+    login()
 
-if not check_password():
-    st.stop()
+if st.session_state.get("password_correct", False):
+    st.success("Welcome!")
+    # The rest of your Streamlit app goes here
+
 import os
 import json
 from typing import List, Dict
